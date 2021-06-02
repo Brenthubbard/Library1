@@ -1,7 +1,7 @@
 @{
   Layout = "_Layout";
 }
-@model Library.Models.Item
+@model Library.Models.Book
 <h2>Book Details</h2>
 <hr />
 <h3>@Html.DisplayNameFor(model => model.Synopsis): @Html.DisplayFor(model => model.Synopsis)</h3>
@@ -15,7 +15,7 @@ else
   <ul>
     @foreach (var join in Model.JoinEntities)
     {
-      <li>@join.Category.Name</li>
+      <li>@join.Author.Name</li>
     }
   </ul>
 }

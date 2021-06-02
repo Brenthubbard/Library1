@@ -12,3 +12,10 @@
 
 <ul>
   @foreach (Author author in Model)
+  {
+    <li>@Html.ActionLink($"{author.Name}", "Details", new { id = author.AuthorId})</li>
+  }
+</ul>
+
+<p>@Html.ActionLink("Add new author", "Create")</p>
+<p>@Html.ActionLink("Home", "Index", "Home")</p>
