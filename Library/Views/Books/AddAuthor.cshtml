@@ -2,11 +2,11 @@
   Layout = "_Layout";
 }
 
-@model Library.Models.Books
+@model Library.Models.Book
 
 <h2>Add an Author</h2>
 
-<h4>Add a Author to this Book: @Html.DisplayFor(model => model.Description)</h4>
+<h4>Add a Author to this Book: @Html.DisplayFor(model => model.Synopsis)</h4>
 
 @using (Html.BeginForm())
 {
