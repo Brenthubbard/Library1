@@ -43,7 +43,7 @@ namespace Library.Controllers
 
     public ActionResult Details(int id)
     {
-      var thisAuthor = _db.Author
+      var thisAuthor = _db.Authors
           .Include(author => author.JoinEntities)
           .ThenInclude(join => join.Book)
           .FirstOrDefault(author => author.AuthorId == id);
