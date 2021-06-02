@@ -11,13 +11,12 @@ using System.Security.Claims;
 
 namespace Library.Controllers
 {
-  [Authorize]
-  public class BookController : Controller
+  public class BooksController : Controller
   {
     private readonly LibraryContext _db;
     private readonly UserManager<ApplicationUser> _userManager;
 
-    public BookController(UserManager<ApplicationUser> userManager, LibraryContext db)
+    public BooksController(UserManager<ApplicationUser> userManager, LibraryContext db)
     {
       _userManager = userManager;
       _db = db;
@@ -25,9 +24,9 @@ namespace Library.Controllers
 
     public async Task<ActionResult> Index()
     {
-      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      var currentUser = await _userManager.FindByIdAsync(userId);
-      var userBooks = _db.Books.Where(entry => entry.User.Id == currentUser.Id).ToList();
+      // var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      // var currentUser = await _userManager.FindByIdAsync(userId);
+      // var userBooks = _db.Books.Where(entry => entry.User.Id == currentUser.Id).ToList();
       return View(userBooks);
     }
 

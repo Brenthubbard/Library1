@@ -8,11 +8,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Library.Controllers
 {
-  public class AuthorController : Controller
+  public class AuthorsController : Controller
   {
     private readonly LibraryContext _db;
 
-    public AuthorController(LibraryContext db)
+    public AuthorsController(LibraryContext db)
     {
       _db = db;
     }

@@ -5,8 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Library.Models;
-
-//new code
 using Microsoft.AspNetCore.Identity;
 
 namespace Library
@@ -67,7 +65,7 @@ namespace Library
 
       app.Run(async (context) =>
       {
-        await context.Response.WriteAsync("Hello World!");
+        await context.Response.WriteAsync("Hey dont worry, its definitely going to work soon!!!  yea!!!");
       });
     }
   }
