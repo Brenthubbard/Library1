@@ -9,6 +9,7 @@ namespace Library.Models
     {
       this.JoinEntities = new HashSet<AuthorBook>();
     }
+    public string Title { get; set; }
     public int BookId { get; set; }
     public string Synopsis { get; set; }
     public virtual ApplicationUser User { get; set; }
