@@ -8,6 +8,9 @@
 
 @using (Html.BeginForm())
 {
+  @Html.LabelFor(model => model.Title)
+  @Html.TextBoxFor(model => model.Title)
+
   @Html.LabelFor(model => model.Synopsis)
   @Html.TextBoxFor(model => model.Synopsis)
 

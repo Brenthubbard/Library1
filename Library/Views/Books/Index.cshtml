@@ -10,9 +10,9 @@
 @if (Model.Any())
 {
   <ul>
-    @foreach (Book book in Model)
+  @foreach (Book book in Model)
     {
-      <li>@Html.ActionLink($"{book.Synopsis}", "Details", new { id = book.BookId })</li>
+      <li>@Html.ActionLink($"{book.Title}", "Details", new { id = book.BookId })</li>
     }
   </ul>
 }
