@@ -23,6 +23,11 @@ namespace Library.Controllers
       return View();
     }
 
+    public IActionResult Register()
+    {
+      return View();
+    }
+
     [HttpPost]
     public async Task<ActionResult> Register(RegisterViewModel model)
     {
