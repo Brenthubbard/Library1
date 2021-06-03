@@ -6,18 +6,42 @@
 
 <h2>Edit</h2>
 
-<h4>Edit this BOOK: @Html.DisplayFor(model => model.Synopsis)</h4>
+<h4>Edit this BOOK: @Html.DisplayFor(model => model.Title)</h4>
 
 @using (Html.BeginForm())
 {
   @Html.HiddenFor(model => model.BookId)
+  <br>
+
+  @Html.LabelFor(model => model.Title)
+  @Html.EditorFor(model => model.Title)
+  <br>
 
   @Html.LabelFor(model => model.Synopsis)
   @Html.EditorFor(model => model.Synopsis)
+  <br>
 
-  @* @Html.LabelFor(model => model.Author) *@
+  @Html.Label("Author")
   @Html.DropDownList("AuthorId")
+  <br>
 
+  @if (@Model.JoinEntities.Count == 0)
+  {
+    <p>This book does not have any authors yet</p>
+  }
+  else
+  {
+    <h4>Authors:</h4>
+    <ul>
+  @foreach (var join in Model.JoinEntities)
+      {
+        <li>
+          @join.Author.Name
+        </li>
+      }
+    </ul>
+    <br>
+  }
   <input type="submit" value="Save" />
 }
 <p>@Html.ActionLink("Back to list", "Index")</p>

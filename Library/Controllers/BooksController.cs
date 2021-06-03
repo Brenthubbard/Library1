@@ -78,7 +78,7 @@ namespace Library.Controllers
       }
       _db.Entry(book).State = EntityState.Modified;
       _db.SaveChanges();
-      return RedirectToAction("Index");
+      return RedirectToAction("Details", new { id = book.BookId });
     }
 
     public ActionResult AddAuthor(int id)
@@ -96,7 +96,7 @@ namespace Library.Controllers
         _db.AuthorBook.Add(new AuthorBook() { AuthorId = AuthorId, BookId = book.BookId });
       }
       _db.SaveChanges();
-      return RedirectToAction("Index");
+      return RedirectToAction("Details", new { id = book.BookId });
     }
 
     public ActionResult Delete(int id)
@@ -115,12 +115,12 @@ namespace Library.Controllers
     }
 
     [HttpPost]
-    public ActionResult DeleteCategory(int joinId)
+    public ActionResult DeleteAuthor(int joinId)
     {
       var joinEntry = _db.AuthorBook.FirstOrDefault(entry => entry.AuthorBookId == joinId);
       _db.AuthorBook.Remove(joinEntry);
       _db.SaveChanges();
-      return RedirectToAction("Index");
+      return RedirectToAction("Details", new { id = joinEntry.BookId });
     }
   }
 }
