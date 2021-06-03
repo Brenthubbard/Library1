@@ -4,6 +4,8 @@ using Library.Models;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Threading.Tasks;
+
 
 
 namespace Library.Controllers
@@ -17,11 +19,11 @@ namespace Library.Controllers
       _db = db;
     }
 
-    public ActionResult Index()
-    {
-      List<Author> model = _db.Authors.ToList();
-      return View(model);
-    }
+    // public ActionResult Index()
+    // {
+    //   List<Author> model = _db.Authors.ToList();
+    //   return View(model);
+    // }
 
     public ActionResult Create()
     {
@@ -82,6 +84,30 @@ namespace Library.Controllers
       _db.Authors.Remove(thisAuthor);
       _db.SaveChanges();
       return RedirectToAction("Index");
+    }
+    // public async Task<IActionResult> Index(string searchTitle)
+    // {
+    //   var books = from m in _db.Books
+    //               select m;
+
+    //   if (!string.IsNullOrEmpty(searchTitle))
+    //   {
+    //     books = books.Where(s => s.Title.Contains(searchTitle));
+    //   }
+
+    //   return View(await books.ToListAsync());
+    // }
+    public async Task<IActionResult> Index(string searchAuthor)
+    {
+      var authors = from m in _db.Authors
+                    select m;
+
+      if (!string.IsNullOrEmpty(searchAuthor))
+      {
+        authors = authors.Where(s => s.Name.Contains(searchAuthor));
+      }
+
+      return View(await authors.ToListAsync());
     }
   }
 }

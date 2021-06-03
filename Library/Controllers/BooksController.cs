@@ -23,13 +23,13 @@ namespace Library.Controllers
       _db = db;
     }
 
-    public async Task<ActionResult> Index()
-    {
-      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      var currentUser = await _userManager.FindByIdAsync(userId);
-      var userBooks = _db.Books.Where(entry => entry.User.Id == currentUser.Id).ToList();
-      return View(userBooks);
-    }
+    // public async Task<ActionResult> Index()
+    // {
+    //   var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+    //   var currentUser = await _userManager.FindByIdAsync(userId);
+    //   var userBooks = _db.Books.Where(entry => entry.User.Id == currentUser.Id).ToList();
+    //   return View(userBooks);
+    // }
 
     public ActionResult Create()
     {
@@ -121,6 +121,30 @@ namespace Library.Controllers
       _db.AuthorBook.Remove(joinEntry);
       _db.SaveChanges();
       return RedirectToAction("Details", new { id = joinEntry.BookId });
+    }
+    // public async Task<IActionResult> Index(string searchAuthor)
+    // {
+    //   var books = from m in _db.Books
+    //               select m;
+
+    //   if (!string.IsNullOrEmpty(searchAuthor))
+    //   {
+    //     books = books.Where(s => s.Title.Contains(searchAuthor));
+    //   }
+
+    //   return View(await books.ToListAsync());
+    // }
+    public async Task<IActionResult> Index(string searchTitle)
+    {
+      var books = from m in _db.Books
+                  select m;
+
+      if (!string.IsNullOrEmpty(searchTitle))
+      {
+        books = books.Where(s => s.Title.Contains(searchTitle));
+      }
+
+      return View(await books.ToListAsync());
     }
   }
 }

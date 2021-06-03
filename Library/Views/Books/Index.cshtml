@@ -9,6 +9,13 @@
 
 @if (Model.Any())
 {
+  <p>Search for a book by title:</p>
+  <form asp-controller="Books" asp-action="Index">
+  <p>
+    Title: <input type="text" name="searchTitle" />
+    <input type="submit" value="Search" />
+  </p>
+</form>
   <ul>
   @foreach (Book book in Model)
     {
