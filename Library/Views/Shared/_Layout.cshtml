@@ -11,6 +11,7 @@
 <body>
   @RenderBody()
 </body>
-@Html.Partial("Footer")
+<partial id="footer">@Html.ActionLink("Home", "Index", "Home") | @Html.ActionLink("Authors", "Index", "Authors") |
+  @Html.ActionLink("Books", "Index", "Books")</partial>
 
 </html>
