@@ -11,10 +11,10 @@
 <partial id="header">
   @if (User.Identity.IsAuthenticated)
   {
-    <span>Hello @Html.ActionLink($"{@User.Identity.Name}", "Index", "Account")!</span>
     @using (Html.BeginForm("LogOff", "Account"))
     {
-      <input type="submit" value="Log out" />
+      <span>Hello @Html.ActionLink($"{@User.Identity.Name}", "Index", "Account")!</span>
+      <button class="btn btn-sm btn-danger" type="submit" value="Log out">Log out</button>
     }
   }
 </partial>
