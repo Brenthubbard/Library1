@@ -5,4 +5,13 @@
 <h1>Welcome to the Library!</h1>
 <p>@Html.ActionLink("See all books", "Index", "Books")</p>
 <p>@Html.ActionLink("See all authors", "Index", "Authors")</p>
-<p>@Html.ActionLink("Create an account", "Index", "Account")</p>
+
+@if (User.Identity.IsAuthenticated)
+{
+  <p>@Html.ActionLink("Account", "Index", "Account")</p>
+}
+else
+{
+  <p>@Html.ActionLink("Register", "Register", "Account")</p>
+  <p>@Html.ActionLink("Log in", "Login", "Account")</p>
+}
