@@ -28,8 +28,8 @@ namespace GoodTreats.Controllers
     // {
     //   var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
     //   var currentUser = await _userManager.FindByIdAsync(userId);
-    //   var userBooks = _db.Books.Where(entry => entry.User.Id == currentUser.Id).ToList();
-    //   return View(userBooks);
+    //   var userFlavors = _db.Flavors.Where(entry => entry.User.Id == currentUser.Id).ToList();
+    //   return View(userFlavors);
     // }
 
     public ActionResult Create()
@@ -57,8 +57,8 @@ namespace GoodTreats.Controllers
     public ActionResult Details(int id)
     {
       var thisFlavor = _db.Flavors
-          .Include(item => item.JoinEntities)
-          .ThenInclude(join => join.Treats)
+          .Include(flavor => flavor.JoinEntities)
+          .ThenInclude(join => join.Treat)
           .FirstOrDefault(flavor => flavor.FlavorId == id);
       return View(thisFlavor);
     }
@@ -67,7 +67,7 @@ namespace GoodTreats.Controllers
     {
       var thisFlavor = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
       ViewBag.TreatId = new SelectList(_db.Treats, "TreatId", "Name");
-      return View(thisFLavor);
+      return View(thisFlavor);
     }
 
     [HttpPost]
@@ -123,18 +123,18 @@ namespace GoodTreats.Controllers
       _db.SaveChanges();
       return RedirectToAction("Details", new { id = joinEntry.FlavorId });
     }
-    // public async Task<IActionResult> Index(string searchAuthor)
-    // {
-    //   var books = from m in _db.Books
-    //               select m;
+    public async Task<IActionResult> Index(string searchTreat)
+    {
+      var flavors = from m in _db.Flavors
+                  select m;
 
-    //   if (!string.IsNullOrEmpty(searchAuthor))
-    //   {
-    //     books = books.Where(s => s.Title.Contains(searchAuthor));
-    //   }
+      if (!string.IsNullOrEmpty(searchTreat))
+      {
+        flavors = flavors.Where(s => s.Name.Contains(searchTreat));
+      }
 
-    //   return View(await books.ToListAsync());
-    // }
+      return View(await flavors.ToListAsync());
+    }
     // public async Task<IActionResult> Index(string searchTitle)
     // {
     //   var books = from m in _db.Books

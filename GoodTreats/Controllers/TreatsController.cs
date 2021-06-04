@@ -32,11 +32,12 @@ namespace GoodTreats.Controllers
       return View();
     }
 
-    [Authorize]
+    // [Authorize]
 
     [HttpPost]
     public ActionResult Create(Treat treat, int flavorId)
     {
+      
       _db.Flavors.Add(flavor);
       _db.SaveChanges();
       if (flavorId != 0)

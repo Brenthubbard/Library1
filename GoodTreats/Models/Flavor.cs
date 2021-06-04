@@ -10,7 +10,7 @@ namespace GoodTreats.Models
       this.JoinEntities = new HashSet<TreatFlavor>();
     }
     public int FlavorId { get; set; }
-    public string Flavors { get; set; }
+    public string Name { get; set; }
     public string Description { get; set; }
     public virtual ApplicationUser User { get; set; }
     public virtual ICollection<TreatFlavor> JoinEntities { get; }
