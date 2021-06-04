@@ -2,19 +2,46 @@
   Layout = "_Layout";
 }
 
-@model GoodTreats.Models.Treats
+@model GoodTreats.Models.Flavors
 
 <h2>Edit</h2>
 
-<h4>Edit this Treat: @Html.DisplayFor(model => model.Name)</h4>
+<h4>Edit this Flavor: @Html.DisplayFor(model => model.Name)</h4>
 
 @using (Html.BeginForm())
 {
-  @Html.HiddenFor(model => model.TreatId)
+  @Html.HiddenFor(model => model.FlavorId)
+  <br>
 
   @Html.LabelFor(model => model.Name)
   @Html.EditorFor(model => model.Name)
+  <br>
 
+  @Html.LabelFor(model => model.Description)
+  @Html.EditorFor(model => model.Description)
+  <br>
+
+  @Html.Label("Treat")
+  @Html.DropDownList("TreatId")
+  <br>
+
+  @if (@Model.JoinEntities.Count == 0)
+  {
+    <p>This Flavor does not have any treat yet!</p>
+  }
+  else
+  {
+    <h4>Treat:</h4>
+    <ul>
+  @foreach (var join in Model.JoinEntities)
+      {
+        <li>
+          @join.Treat.Name
+        </li>
+      }
+    </ul>
+    <br>
+  }
   <input type="submit" value="Save" />
 }
 <p>@Html.ActionLink("Back to list", "Index")</p>

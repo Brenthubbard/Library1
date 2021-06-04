@@ -1,0 +1,33 @@
+@{
+  Layout = "_Layout";
+}
+
+@using GoodTreats.Models;
+@model IEnumerable<GoodTreats.Models.Flavor>
+
+<h1>Flavors</h1>
+
+@if (Model.Any())
+{
+  <p>Search for a Flavor by Name:</p>
+  <form asp-controller="Flavors" asp-action="Index">
+  <p>
+    Title: <input type="text" name="searchName" />
+    <input type="submit" value="Search" />
+  </p>
+</form>
+  <ul>
+  @foreach (Flavor flavor in Model)
+    {
+      <li>@Html.ActionLink($"{flavor.Name}", "Details", new { id = flavor.FlavorId })</li>
+    }
+  </ul>
+}
+else
+{
+  <h3>No Flavors have been added yet!</h3>
+}
+
+<p>@Html.ActionLink("Add new Flavor", "Create")</p>
+
+<p>@Html.ActionLink("Home", "Index", "Home")</p>

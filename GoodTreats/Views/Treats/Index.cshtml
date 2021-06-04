@@ -1,30 +1,35 @@
 @{
   Layout = "_Layout";
 }
-@using Library.Models;
+@using GoodTreats.Models;
 
-<h1>Authors</h1>
+<h1>Treats</h1>
 
 @if (@Model.Count == 0)
 {
-  <h3>No authors have been added yet</h3>
+  <h3>No treats have been added yet</h3>
 }
 else
 {
-  <p>Search for an author by name:</p>
-  <form asp-controller="Authors" asp-action="Index">
+  <p>Search for an treat by name:</p>
+  <form asp-controller="Treats" asp-action="Index">
   <p>
-    Name: <input type="text" name="searchAuthor" />
+    Name: <input type="text" name="searchTreat" />
     <input type="submit" value="Search" />
   </p>
 </form>
   <ul>
-  @foreach (Author author in Model)
+  @foreach (Treat treat in Model)
     {
-      <li>@Html.ActionLink($"{author.Name}", "Details", new { id = author.AuthorId})</li>
+      <li>@Html.ActionLink($"{treat.Name}", "Details", new { id = treat.TreatId})</li>
     }
   </ul>
 }
 
-<p>@Html.ActionLink("Add new author", "Create")</p>
-<p>@Html.ActionLink("Home", "Index", "Home")</p>
+<button>@Html.ActionLink("Add new treat", "Create")</button>
+@* <p>@Html.ActionLink("Home", "Index", "Home")</p> *@
+<button type="button" class="btn btn-primary">@Html.ActionLink("Show all treats", "Index")</button>
+<button type="button" class="btn btn-success">@Html.ActionLink("Home", "Index", "Home")</button>
+<button type="button" class="btn btn-danger">@Html.ActionLink("All Flavors", "Index")</button>
+<button type="button" class="btn btn-warning">@Html.ActionLink("Show all treats", "Index", "Treats")</button>
+

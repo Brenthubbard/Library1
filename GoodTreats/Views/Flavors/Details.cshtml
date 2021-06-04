@@ -1,0 +1,33 @@
+@{
+  Layout = "_Layout";
+}
+@model GoodTreats.Models.Flavors
+<h2>Flavor Details</h2>
+<hr />
+<h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
+<p>@Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(model => model.Description)</p>
+@if (@Model.JoinEntities.Count == 0)
+{
+  <p>This flavor does not have any treats associated with it!</p>
+  <p>@Html.ActionLink("Add an treat to this nummy flavor", "AddTreat", new { id = Model.FlavorId })</p>
+}
+else
+{
+  <h4>Flavor treats:</h4>
+  <ul>
+  @foreach (var join in Model.JoinEntities)
+    {
+      <li>@join.Treat.Name
+        | @using (Html.BeginForm("DeleteTreat", "Flavors"))
+        {
+          @Html.Hidden("joinId", @join.TreatFlavorId)
+          <input type="submit" value="Delete" />
+        }
+      </li>
+    }
+  </ul>
+  <p>@Html.ActionLink("Add another treat to this flavor", "AddTreat", new { id = Model.FlavorId })</p>
+}
+<p>@Html.ActionLink("Back to list", "Index")</p>
+<p>@Html.ActionLink("Edit Book", "Edit", new { id = Model.BookId })</p>
+<p>@Html.ActionLink("Delete BOOK", "Delete", new { id = Model.BookId })</p>

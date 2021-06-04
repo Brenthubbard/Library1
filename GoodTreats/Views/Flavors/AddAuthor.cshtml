@@ -2,16 +2,24 @@
   Layout = "_Layout";
 }
 
-@model GoodTreats.Models.Treats
+@model GoodTreats.Models.Flavors
 
-<h2>Are you sure you want to delete this Treat? But it's so yummi!!</h2>
+<h2>Add a Treat</h2>
 
-@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)
+<h4>Add a Treat to this Flavor: @Html.DisplayFor(model => model.Description)</h4>
+
 @using (Html.BeginForm())
 {
-  <input type="submit" value="Delete" />
+  @Html.HiddenFor(model => model.FlavorId)
+
+  @Html.Label("Select Treat")
+  @Html.DropDownList("TreatId")
+
+  <input type="submit" value="Save" />
 }
-@Html.ActionLink("Back to List", "Index")
+
+<p>@Html.ActionLink("Back to list", "Index")</p>
+
 <button type="button" class="btn btn-primary">@Html.ActionLink("Show all treats", "Index")</button>
 <button type="button" class="btn btn-success">@Html.ActionLink("Home", "Index", "Home")</button>
 <button type="button" class="btn btn-danger">@Html.ActionLink("All Flavors", "Index")</button>
