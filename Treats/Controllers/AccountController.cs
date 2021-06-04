@@ -1,18 +1,18 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
-using Library.Models;
+using Treats.Models;
 using System.Threading.Tasks;
-using Library.ViewModels;
+using Treats.ViewModels;
 
-namespace Library.Controllers
+namespace Treats.Controllers
 {
   public class AccountController : Controller
 
   {
-    private readonly LibraryContext _db;
+    private readonly TreatsContext _db;
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly SignInManager<ApplicationUser> _signInManager;
-    public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, LibraryContext db)
+    public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, TreatsContext db)
     {
       _userManager = userManager;
       _signInManager = signInManager;

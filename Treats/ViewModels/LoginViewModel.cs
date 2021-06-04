@@ -1,4 +1,4 @@
-namespace Library.ViewModels
+namespace Treats.ViewModels
 {
   public class LoginViewModel
   {
