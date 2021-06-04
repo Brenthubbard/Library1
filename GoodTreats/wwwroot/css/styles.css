@@ -1,0 +1,27 @@
+partial#footer {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  color: #ccc;
+  background: #333;
+  padding: 8px;
+  height: 50px;
+  text-align: center;
+}
+
+partial#header {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  color: #ccc;
+  background: #333;
+  padding: 8px;
+  height: 50px;
+  text-align: right;
+}
+
+body {
+  margin-top: 50px;
+}

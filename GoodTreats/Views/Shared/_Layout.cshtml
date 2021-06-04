@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>The Library of the GODS</title>
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+  <link rel="stylesheet" href="~/css/styles.css">
+</head>
+
+<partial id="header">
+  @if (User.Identity.IsAuthenticated)
+  {
+    @using (Html.BeginForm("LogOff", "Account"))
+    {
+      <span>Hello @Html.ActionLink($"{@User.Identity.Name}", "Index", "Account")!</span>
+      <button class="btn btn-sm btn-danger" type="submit" value="Log out">Log out</button>
+    }
+  }
+</partial>
+
+<body class="container">
+  @RenderBody()
+</body>
+<partial id="footer">
+  @Html.ActionLink("Home", "Index", "Home") | @Html.ActionLink("Authors", "Index", "Authors") |
+  @Html.ActionLink("Books", "Index", "Books")
+</partial>
+
+</html>
