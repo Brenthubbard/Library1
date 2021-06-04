@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Library.Models;
+using Treats.Models;
 using Microsoft.AspNetCore.Identity;
 
-namespace Library
+namespace Treats
 {
   public class Startup
   {
@@ -26,12 +26,12 @@ namespace Library
       services.AddMvc();
 
       services.AddEntityFrameworkMySql()
-        .AddDbContext<LibraryContext>(options => options
+        .AddDbContext<TreatsContext>(options => options
         .UseMySql(Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(Configuration["ConnectionStrings:DefaultConnection"])));
 
       // new code
       services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<LibraryContext>()
+                .AddEntityFrameworkStores<TreatsContext>()
                 .AddDefaultTokenProviders();
 
       // This is new:
@@ -49,11 +49,11 @@ namespace Library
     public void Configure(IApplicationBuilder app)
     {
       app.UseDeveloperExceptionPage();
-      //new code
+    
       app.UseAuthentication();
 
       app.UseRouting();
-      //new code
+    
       app.UseAuthorization();
 
       app.UseEndpoints(routes =>
@@ -65,7 +65,7 @@ namespace Library
 
       app.Run(async (context) =>
       {
-        await context.Response.WriteAsync("Hey dont worry, its definitely going to work soon!!!  yea!!!");
+        await context.Response.WriteAsync("Hey don't worry, its definitely going to work soon!!!  yea!!!");
       });
     }
   }

@@ -2,7 +2,7 @@
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 
-namespace Library
+namespace Treats
 {
   public class Program
   {
