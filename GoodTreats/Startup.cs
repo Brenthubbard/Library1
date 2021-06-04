@@ -26,12 +26,12 @@ namespace Treats
       services.AddMvc();
 
       services.AddEntityFrameworkMySql()
-        .AddDbContext<TreatsContext>(options => options
+        .AddDbContext<GoodTreatsContext>(options => options
         .UseMySql(Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(Configuration["ConnectionStrings:DefaultConnection"])));
 
       // new code
       services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<TreatsContext>()
+                .AddEntityFrameworkStores<GoodTreatsContext>()
                 .AddDefaultTokenProviders();
 
       // This is new:

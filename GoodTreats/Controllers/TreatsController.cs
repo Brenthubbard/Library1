@@ -5,6 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Threading.Tasks;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+
 
 
 
@@ -19,21 +23,24 @@ namespace GoodTreats.Controllers
       _db = db;
     }
 
-    // public ActionResult Index()
-    // {
-    //   List<Author> model = _db.Authors.ToList();
-    //   return View(model);
-    // }
+    public ActionResult Index()
+    {
+      List<Treat> model = _db.Treats.ToList();
+      return View(model);
+    }
 
+    [Authorize]
     public ActionResult Create()
     {
       return View();
     }
 
+    [Authorize]
+
     [HttpPost]
     public ActionResult Create(Treat treat, int flavorId)
     {
-      _db.Flavor.Add(flavor);
+      _db.Flavors.Add(flavor);
       _db.SaveChanges();
       if (flavorId != 0)
       {
@@ -97,18 +104,18 @@ namespace GoodTreats.Controllers
 
     //   return View(await books.ToListAsync());
     // }
-    public async Task<IActionResult> Index(string searchTreat)
-    {
-      var treats = from m in _db.Treats
-                    select m;
+    //   public async Task<IActionResult> Index(string searchTreat)
+    //   {
+    //     var treats = from m in _db.Treats
+    //                   select m;
 
-      if (!string.IsNullOrEmpty(searchTreat))
-      {
-        treats = treats.Where(s => s.Name.Contains(searchTreat));
-      }
+    //     if (!string.IsNullOrEmpty(searchTreat))
+    //     {
+    //       treats = treats.Where(s => s.Name.Contains(searchTreat));
+    //     }
 
-      return View(await treats.ToListAsync());
-    }
+    //     return View(await treats.ToListAsync());
+    //   }
   }
 }
 

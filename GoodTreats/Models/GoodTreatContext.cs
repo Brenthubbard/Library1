@@ -5,8 +5,8 @@ namespace GoodTreats.Models
 {
   public class GoodTreatsContext : IdentityDbContext<ApplicationUser>
   {
-    public virtual DbSet<Flavor> Flavor { get; set; }
     public DbSet<Treat> Treats { get; set; }
+    public virtual DbSet<Flavor> Flavor { get; set; }
 
     public DbSet<TreatFlavor> TreatFlavor { get; set; }
 

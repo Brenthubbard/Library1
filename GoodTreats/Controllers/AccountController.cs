@@ -2,7 +2,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using GoodTreats.Models;
 using System.Threading.Tasks;
-using Treats.ViewModels;
+using GoodTreats.ViewModels;
+
+
+
 
 namespace GoodTreats.Controllers
 {

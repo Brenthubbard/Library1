@@ -1,4 +1,4 @@
-namespace Treats.ViewModels
+namespace GoodTreats.ViewModels
 {
   public class LoginViewModel
   {
