@@ -9,9 +9,6 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 
-
-
-
 namespace GoodTreats.Controllers
 {
   public class TreatsController : Controller
