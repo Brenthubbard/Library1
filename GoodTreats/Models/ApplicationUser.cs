@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 
-namespace Library.Models
+namespace GoodTreats.Models
 {
   public class ApplicationUser : IdentityUser
   {

@@ -5,8 +5,8 @@ namespace GoodTreats.Controllers
 {
   public class HomeController : Controller
   {
-    private readonly TreatsContext _db;
-    public HomeController(TreatsContext db)
+    private readonly GoodTreatsContext _db;
+    public HomeController(GoodTreatsContext db)
     {
       _db = db;
     }

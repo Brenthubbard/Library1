@@ -12,9 +12,9 @@ namespace GoodTreats.Controllers
 {
   public class TreatsController : Controller
   {
-    private readonly TreatsContext _db;
+    private readonly GoodTreatsContext _db;
 
-    public AuthorsController(TreatsContext db)
+    public TreatsController(GoodTreatsContext db)
     {
       _db = db;
     }
@@ -31,9 +31,9 @@ namespace GoodTreats.Controllers
     }
 
     [HttpPost]
-    public ActionResult Create(Treats treats, int flavorId)
+    public ActionResult Create(Treat treat, int flavorId)
     {
-      _db.Flavors.Add(flavor);
+      _db.Flavor.Add(flavor);
       _db.SaveChanges();
       if (flavorId != 0)
       {

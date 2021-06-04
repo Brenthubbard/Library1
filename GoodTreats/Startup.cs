@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Treats.Models;
+using GoodTreats.Models;
 using Microsoft.AspNetCore.Identity;
 
 namespace Treats

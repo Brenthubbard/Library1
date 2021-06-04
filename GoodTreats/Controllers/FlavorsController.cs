@@ -14,10 +14,10 @@ namespace GoodTreats.Controllers
   [Authorize]
   public class FlavorsController : Controller
   {
-    private readonly TreatsContext _db;
+    private readonly GoodTreatsContext _db;
     private readonly UserManager<ApplicationUser> _userManager;
 
-    public FlavorsController(UserManager<ApplicationUser> userManager, TreatsContext db)
+    public FlavorsController(UserManager<ApplicationUser> userManager, GoodTreatsContext db)
     {
       _userManager = userManager;
       _db = db;
