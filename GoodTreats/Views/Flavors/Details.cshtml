@@ -1,7 +1,7 @@
 @{
   Layout = "_Layout";
 }
-@model GoodTreats.Models.Flavors
+@model GoodTreats.Models.Flavor
 <h2>Flavor Details</h2>
 <hr />
 <h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
@@ -29,5 +29,5 @@ else
   <p>@Html.ActionLink("Add another treat to this flavor", "AddTreat", new { id = Model.FlavorId })</p>
 }
 <p>@Html.ActionLink("Back to list", "Index")</p>
-<p>@Html.ActionLink("Edit Book", "Edit", new { id = Model.BookId })</p>
-<p>@Html.ActionLink("Delete BOOK", "Delete", new { id = Model.BookId })</p>
+<p>@Html.ActionLink("Edit Book", "Edit", new { id = Model.FlavorId })</p>
+<p>@Html.ActionLink("Delete BOOK", "Delete", new { id = Model.FlavorId })</p>

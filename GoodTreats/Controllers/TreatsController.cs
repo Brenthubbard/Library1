@@ -70,7 +70,7 @@ namespace GoodTreats.Controllers
 
 
     [HttpPost]
-    public ActionResult Create(Treat treat, int flavorId)
+    public ActionResult Create(Flavor flavor, int flavorId)
     {
 
       _db.Flavors.Add(flavor);
@@ -78,7 +78,7 @@ namespace GoodTreats.Controllers
       _db.SaveChanges();
       if (flavorId != 0)
       {
-        _db.TreatFlavor.Add(new TreatFlavor() { FlavorId = flavorId, TreatId = treat.TreatId });
+        _db.TreatFlavor.Add(new TreatFlavor() { FlavorId = flavorId, TreatId = flavor.FlavorId });
       }
       _db.SaveChanges();
       return RedirectToAction("Index");
