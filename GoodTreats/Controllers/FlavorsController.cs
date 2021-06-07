@@ -24,12 +24,25 @@ namespace GoodTreats.Controllers
       _db = db;
     }
 
-    // public async Task<ActionResult> Index()
+    public async Task<ActionResult> Index()
+    {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+      var userFlavors = _db.Flavors.Where(entry => entry.User.Id == currentUser.Id).ToList();
+      return View(userFlavors);
+    }
+
+    // public async Task<IActionResult> Index(string searchTreat)
     // {
-    //   var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-    //   var currentUser = await _userManager.FindByIdAsync(userId);
-    //   var userFlavors = _db.Flavors.Where(entry => entry.User.Id == currentUser.Id).ToList();
-    //   return View(userFlavors);
+    //   var flavors = from m in _db.Flavors
+    //                 select m;
+
+    //   if (!string.IsNullOrEmpty(searchTreat))
+    //   {
+    //     flavors = flavors.Where(s => s.Name.Contains(searchTreat));
+    //   }
+
+    //   return View(await flavors.ToListAsync());
     // }
 
     public ActionResult Create()
@@ -123,18 +136,7 @@ namespace GoodTreats.Controllers
       _db.SaveChanges();
       return RedirectToAction("Details", new { id = joinEntry.FlavorId });
     }
-    public async Task<IActionResult> Index(string searchTreat)
-    {
-      var flavors = from m in _db.Flavors
-                  select m;
 
-      if (!string.IsNullOrEmpty(searchTreat))
-      {
-        flavors = flavors.Where(s => s.Name.Contains(searchTreat));
-      }
-
-      return View(await flavors.ToListAsync());
-    }
     // public async Task<IActionResult> Index(string searchTitle)
     // {
     //   var books = from m in _db.Books

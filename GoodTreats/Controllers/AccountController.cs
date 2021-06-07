@@ -26,10 +26,8 @@ namespace GoodTreats.Controllers
       return View();
     }
 
-    public IActionResult Register()
-    {
-      return View();
-    }
+
+
 
     [HttpPost]
     public async Task<ActionResult> Register(RegisterViewModel model)
@@ -45,6 +43,10 @@ namespace GoodTreats.Controllers
         return View();
       }
     }
+
+
+  
+
 
     public ActionResult Login()
     {

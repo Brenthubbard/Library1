@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using System;
+
 
 namespace GoodTreats.Controllers
 {
@@ -20,6 +22,18 @@ namespace GoodTreats.Controllers
       _db = db;
     }
 
+    public async Task<IActionResult> Index(string searchTreat)
+    {
+      var treats = from m in _db.Treats
+                   select m;
+
+      if (!string.IsNullOrEmpty(searchTreat))
+      {
+        treats = treats.Where(s => s.Name.Contains(searchTreat));
+      }
+
+      return View(await treats.ToListAsync());
+    }
     public ActionResult Index()
     {
       List<Treat> model = _db.Treats.ToList();
@@ -32,13 +46,35 @@ namespace GoodTreats.Controllers
       return View();
     }
 
-    // [Authorize]
+    [Authorize]
+
+
+    // [HttpPost]
+    // public async Task<ActionResult> Create(Treat treat)
+    // {
+    //   var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+    //   var currentUser = await _userManager.FindByIdAsync(userId);
+    //   treat.User = currentUser;
+    //   if (ModelState.IsValid)
+    //   {
+    //     _db.Treats.Add(treat);
+    //     _db.SaveChanges();
+    //     return RedirectToAction("Index");
+    //   }
+    //   return View(treat);
+    // }
+
+
+
+
+
 
     [HttpPost]
     public ActionResult Create(Treat treat, int flavorId)
     {
-      
+
       _db.Flavors.Add(flavor);
+      // _db.Flavors.Add(new Flavor() {FlavorId  = 5});
       _db.SaveChanges();
       if (flavorId != 0)
       {
@@ -92,7 +128,7 @@ namespace GoodTreats.Controllers
     }
     // public async Task<IActionResult> Index(string searchTitle)
     // {
-    //   var books = from m in _db.Books
+    //   var books = from m in _db.Flavor
     //               select m;
 
     //   if (!string.IsNullOrEmpty(searchTitle))
@@ -102,18 +138,6 @@ namespace GoodTreats.Controllers
 
     //   return View(await books.ToListAsync());
     // }
-    //   public async Task<IActionResult> Index(string searchTreat)
-    //   {
-    //     var treats = from m in _db.Treats
-    //                   select m;
-
-    //     if (!string.IsNullOrEmpty(searchTreat))
-    //     {
-    //       treats = treats.Where(s => s.Name.Contains(searchTreat));
-    //     }
-
-    //     return View(await treats.ToListAsync());
-    //   }
   }
 }
 
