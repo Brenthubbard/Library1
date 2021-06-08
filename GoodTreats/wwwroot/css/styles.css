@@ -24,4 +24,8 @@ partial#header {
 
 body {
   margin-top: 50px;
+  background-color: lightblue;
+}
+font {
+  color: black;
 }
