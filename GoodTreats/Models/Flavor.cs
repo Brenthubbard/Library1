@@ -11,7 +11,6 @@ namespace GoodTreats.Models
     }
     public int FlavorId { get; set; }
     public string Name { get; set; }
-    // public string Flavor { get; set; }
     public string Description { get; set; }
     public virtual ApplicationUser User { get; set; }
     public virtual ICollection<TreatFlavor> JoinEntities { get; }

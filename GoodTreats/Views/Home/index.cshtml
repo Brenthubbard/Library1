@@ -2,21 +2,32 @@
   Layout = "_Layout";
 }
 
-<h1>Welcome to the Library!</h1>
-<p>@Html.ActionLink("See all flavors", "Index", "Flavors")</p>
-<p>@Html.ActionLink("See all treats", "Index", "Treats")</p>
+<h1>Welcome to the Pierres Awesome App!</h1>
+
+
 
 @if (User.Identity.IsAuthenticated)
-{
-  <p>@Html.ActionLink("Account", "Index", "Account")</p>
-}
-else
-{
-  <p>@Html.ActionLink("Register", "Register", "Account")</p>
-  <p>@Html.ActionLink("Log in", "Login", "Account")</p>
-}
-<button type="button" class="btn btn-secondary">@Html.ActionLink("Show all treats", "Index")</button>
-<button type="button" class="btn btn-success">@Html.ActionLink("Home", "Index", "Home")</button>
-<button type="button" class="btn btn-danger">@Html.ActionLink("All Flavors", "Index")</button>
-<button type="button" class="btn btn-warning">@Html.ActionLink("Show all treats", "Index", "Treats")</button>
+   {
 
+   } 
+  else
+  {  
+   } 
+  
+  <button type="button" class="btn btn-warning"> @Html.ActionLink("Account", "Index", "Account")</button>
+  <button type="button" class="btn btn-secondary">@Html.ActionLink("Register", "Register", "Account")</button>
+  
+  <button type="button" class="btn btn-secondary">@Html.ActionLink("Log in", "Login", "Account")</button>
+  
+  
+
+
+
+
+
+
+<button type="button" class="btn btn-success">@Html.ActionLink("Home", "Index", "Home")</button>
+<button type="button" class="btn btn-danger">@Html.ActionLink("Flavors", "Index", "Flavors")</button>
+@* <button type="button" class="btn btn-danger">@Html.ActionLink("All Flavors", "Index")</button> *@
+
+<button type="button" class="btn btn-warning">@Html.ActionLink("Treats", "Index", "Treats")</button>

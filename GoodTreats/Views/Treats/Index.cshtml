@@ -13,10 +13,7 @@ else
 {
   <p>Search for an treat by name:</p>
   <form asp-controller="Treats" asp-action="Index">
-  <p>
-    Name: <input type="text" name="searchTreat" />
-    <input type="submit" value="Search" />
-  </p>
+
 </form>
   <ul>
   @foreach (Treat treat in Model)
@@ -28,8 +25,8 @@ else
 
 <button>@Html.ActionLink("Add new treat", "Create")</button>
 @* <p>@Html.ActionLink("Home", "Index", "Home")</p> *@
-<button type="button" class="btn btn-primary">@Html.ActionLink("Show all treats", "Index")</button>
+@* <button type="button" class="btn btn-primary">@Html.ActionLink("Show all treats", "Index")</button> *@
 <button type="button" class="btn btn-success">@Html.ActionLink("Home", "Index", "Home")</button>
 <button type="button" class="btn btn-danger">@Html.ActionLink("All Flavors", "Index")</button>
-<button type="button" class="btn btn-warning">@Html.ActionLink("Show all treats", "Index", "Treats")</button>
+<button type="button" class="btn btn-warning">@Html.ActionLink("All treats", "Index", "Treats")</button>
 

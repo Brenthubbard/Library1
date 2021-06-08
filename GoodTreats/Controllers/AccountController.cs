@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using GoodTreats.Models;
 using System.Threading.Tasks;
 using GoodTreats.ViewModels;
-
+using System;
 
 
 
@@ -25,7 +25,10 @@ namespace GoodTreats.Controllers
     {
       return View();
     }
-
+    public IActionResult Register()
+    {
+      return View();
+    }
 
 
 

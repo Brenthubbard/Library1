@@ -6,8 +6,16 @@
 
 @model LoginViewModel
 
-<h2>Log in with your account</h2>
+<h2>Log in to your account</h2>
 <hr />
+
+@if(ViewBag.Error != null)
+{
+  <h3>@ViewBag.Error, Please try again.</h3>
+}
+
+
+
 @using (Html.BeginForm())
 {
   @Html.LabelFor(m => m.Email)

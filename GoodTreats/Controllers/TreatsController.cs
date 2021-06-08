@@ -5,10 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Threading.Tasks;
-using System.Security.Claims;
+// using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using System;
+// using Microsoft.AspNetCore.Identity;
+// using System;
 
 
 namespace GoodTreats.Controllers
@@ -22,29 +22,25 @@ namespace GoodTreats.Controllers
       _db = db;
     }
 
-    public async Task<IActionResult> Index(string searchTreat)
-    {
-      var treats = from m in _db.Treats
-                   select m;
+    // public async Task<IActionResult> Index(string searchTreat)
+    // {
+    //   var treats = from m in _db.Treats
+    //                select m;
 
-      if (!string.IsNullOrEmpty(searchTreat))
-      {
-        treats = treats.Where(s => s.Name.Contains(searchTreat));
-      }
+    //   if (!string.IsNullOrEmpty(searchTreat))
+    //   {
+    //     treats = treats.Where(s => s.Name.Contains(searchTreat));
+    //   }
 
-      return View(await treats.ToListAsync());
-    }
-    public ActionResult Index()
-    {
-      List<Treat> model = _db.Treats.ToList();
-      return View(model);
-    }
+    //   return View(await treats.ToListAsync());
+    // }
+    
 
-    [Authorize]
-    public ActionResult Create()
-    {
-      return View();
-    }
+    // [Authorize]
+    // public ActionResult Create()
+    // {
+    //   return View();
+    // }
 
     [Authorize]
 
@@ -55,6 +51,8 @@ namespace GoodTreats.Controllers
     //   var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
     //   var currentUser = await _userManager.FindByIdAsync(userId);
     //   treat.User = currentUser;
+    //   _db.Treats.Add(treat);
+    //   _db.SaveChanges();
     //   if (ModelState.IsValid)
     //   {
     //     _db.Treats.Add(treat);
@@ -63,6 +61,7 @@ namespace GoodTreats.Controllers
     //   }
     //   return View(treat);
     // }
+    
 
 
 
@@ -70,15 +69,14 @@ namespace GoodTreats.Controllers
 
 
     [HttpPost]
-    public ActionResult Create(Flavor flavor, int flavorId)
+    public ActionResult Create(Flavor flavor, int flavorId, Treat treat)
     {
 
       _db.Flavors.Add(flavor);
-      // _db.Flavors.Add(new Flavor() {FlavorId  = 5});
       _db.SaveChanges();
       if (flavorId != 0)
       {
-        _db.TreatFlavor.Add(new TreatFlavor() { FlavorId = flavorId, TreatId = flavor.FlavorId });
+        _db.TreatFlavor.Add(new TreatFlavor() { FlavorId = flavorId, TreatId = treat.TreatId });
       }
       _db.SaveChanges();
       return RedirectToAction("Index");
@@ -109,7 +107,7 @@ namespace GoodTreats.Controllers
       _db.Entry(treat).State = EntityState.Modified;
       _db.SaveChanges();
 
-      return RedirectToAction("Index");
+      return RedirectToAction("Details", new { id = treat.TreatId });
     }
 
     public ActionResult Delete(int id)
@@ -126,18 +124,18 @@ namespace GoodTreats.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
-    // public async Task<IActionResult> Index(string searchTitle)
-    // {
-    //   var books = from m in _db.Flavor
-    //               select m;
+    public async Task<IActionResult> Index(string searchName)
+    {
+      var flavor = from m in _db.Treats
+                  select m;
 
-    //   if (!string.IsNullOrEmpty(searchTitle))
-    //   {
-    //     books = books.Where(s => s.Title.Contains(searchTitle));
-    //   }
+      if (!string.IsNullOrEmpty(searchName))
+      {
+        flavor = flavor.Where(s => s.Name.Contains(searchName));
+      }
 
-    //   return View(await books.ToListAsync());
-    // }
+      return View(await flavor.ToListAsync());
+    }
   }
 }
 

@@ -9,12 +9,8 @@
 
 @if (Model.Any())
 {
-  <p>Search for a Flavor by Name:</p>
   <form asp-controller="Flavors" asp-action="Index">
-  <p>
-    Title: <input type="text" name="searchName" />
-    <input type="submit" value="Search" />
-  </p>
+ 
 </form>
   <ul>
   @foreach (Flavor flavor in Model)
@@ -28,6 +24,6 @@ else
   <h3>No Flavors have been added yet!</h3>
 }
 
-<p>@Html.ActionLink("Add new Flavor", "Create")</p>
+<button type="button" class="btn btn-warning">@Html.ActionLink("Add new Flavor", "Create")</button>
 
-<p>@Html.ActionLink("Home", "Index", "Home")</p>
+<button type="button" class="btn btn-success">@Html.ActionLink("Home", "Index", "Home")</button>

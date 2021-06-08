@@ -9,9 +9,12 @@
 {
   @Html.LabelFor(model => model.Name)
   @Html.TextBoxFor(model => model.Name)
-  <input type="submit" value="Add new Treat" />
+  <input type="submit" value="Add new Treat" class="btn btn-default"/>
 }
-<button type="button" class="btn btn-primary">@Html.ActionLink("Show all treats", "Index")</button>
+
+
 <button type="button" class="btn btn-success">@Html.ActionLink("Home", "Index", "Home")</button>
+
 <button type="button" class="btn btn-danger">@Html.ActionLink("All Flavors", "Index")</button>
+
 <button type="button" class="btn btn-warning">@Html.ActionLink("Show all treats", "Index", "Treats")</button>
