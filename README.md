@@ -15,7 +15,7 @@
 * _Razor_
 * _Entity Framework Core_
 * _Git_
-
+*_Identity_
 ## Description
 
 _This application creates a database to hold treats and flavors with a many-to-many relationship. One can register for an account and log in to create, update, or delete flavors. All users including guests can see all of Pierre's treats and their corresponding flavors._

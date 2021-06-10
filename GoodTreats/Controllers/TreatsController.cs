@@ -8,12 +8,11 @@ using System.Threading.Tasks;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using System;
 
 
 namespace GoodTreats.Controllers
 {
-    [Authorize]
+  [Authorize]
   public class TreatsController : Controller
   {
     private readonly GoodTreatsContext _db;
@@ -25,32 +24,48 @@ namespace GoodTreats.Controllers
       _db = db;
     }
 
-
-
-
-    [HttpPost]
-    public async Task<ActionResult> Create(Treat treat)
+    public async Task<IActionResult> Index(string searchName)
     {
-      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      var currentUser = await _userManager.FindByIdAsync(userId);
-      treat.User = currentUser;
-      _db.Treats.Add(treat);
-      _db.SaveChanges();
-      if (ModelState.IsValid)
+      var flavor = from m in _db.Treats
+                   select m;
+
+      if (!string.IsNullOrEmpty(searchName))
       {
-        _db.Treats.Add(treat);
-        _db.SaveChanges();
-        return RedirectToAction("Index");
+        flavor = flavor.Where(s => s.Name.Contains(searchName));
       }
-      return View(treat);
+
+      return View(await flavor.ToListAsync());
     }
 
-    
-    
+    public ActionResult Create()
+    {
+      ViewBag.TreatId = new SelectList(_db.Treats, "TreatId", "Name", "Treats");
+      return View();
+    }
+
+    // [HttpPost]
+    // public async Task<ActionResult> Create(Treat treat)
+    // {
+    //   var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+    //   var currentUser = await _userManager.FindByIdAsync(userId);
+    //   treat.User = currentUser;
+    //   _db.Treats.Add(treat);
+    //   _db.SaveChanges();
+    //   if (ModelState.IsValid)
+    //   {
+    //     _db.Treats.Add(treat);
+    //     _db.SaveChanges();
+    //     return RedirectToAction("Index");
+    //   }
+    //   return View(treat);
+    // }
+
+
+
     [HttpPost]
     public async Task<ActionResult> Create(Treat treat, int flavorId)
     {
-var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var currentUser = await _userManager.FindByIdAsync(userId);
       treat.User = currentUser;
       _db.Treats.Add(treat);
@@ -92,7 +107,7 @@ var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
     }
 
 
-    public ActionResult AddTreat(int id)
+    public ActionResult AddFlavor(int id)
     {
       var thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
       ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Name");
@@ -100,15 +115,25 @@ var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
     }
 
     [HttpPost]
-    public ActionResult AddTreat(Flavor flavor, int TreatId)
+    public ActionResult AddFlavor(Treat treat, int FlavorId)
     {
-      if (TreatId != 0)
+      if (FlavorId != 0)
       {
-        _db.TreatFlavor.Add(new TreatFlavor() { TreatId = TreatId, FlavorId = flavor.FlavorId });
+        _db.TreatFlavor.Add(new TreatFlavor() { FlavorId = FlavorId, TreatId = treat.TreatId });
       }
       _db.SaveChanges();
-      return RedirectToAction("Details", new { id = flavor.FlavorId });
+      return RedirectToAction("Details", new { id = treat.TreatId });
     }
+    // [HttpPost]
+    // public ActionResult AddTreat(Flavor flavor, int TreatId)
+    // {
+    //   if (TreatId != 0)
+    //   {
+    //     _db.TreatFlavor.Add(new TreatFlavor() { TreatId = TreatId, FlavorId = flavor.FlavorId });
+    //   }
+    //   _db.SaveChanges();
+    //   return RedirectToAction("Details", new { id = flavor.FlavorId });
+    // }
 
 
 
@@ -126,17 +151,13 @@ var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
-    public async Task<IActionResult> Index(string searchName)
+    [HttpPost]
+    public ActionResult DeleteFlavor(int joinId)
     {
-      var flavor = from m in _db.Treats
-                  select m;
-
-      if (!string.IsNullOrEmpty(searchName))
-      {
-        flavor = flavor.Where(s => s.Name.Contains(searchName));
-      }
-
-      return View(await flavor.ToListAsync());
+      var joinEntry = _db.TreatFlavor.FirstOrDefault(entry => entry.TreatFlavorId == joinId);
+      _db.TreatFlavor.Remove(joinEntry);
+      _db.SaveChanges();
+      return RedirectToAction("Details", new { id = joinEntry.TreatId });
     }
   }
 }
