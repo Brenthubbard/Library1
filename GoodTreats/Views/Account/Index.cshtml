@@ -3,7 +3,6 @@
   Layout = "_Layout";
 }
 
-@using System.Security.Claims;
 
 @if(User.Identity.IsAuthenticated)
 {
@@ -19,37 +18,4 @@ else
 {
   <p>Sign back in</p>
 }
-
-
 <h4>@Html.ActionLink("Home" , "Index", "Home" ) || </h4>
-
-
-
-
-
-
-@* @{
-  Layout = "_Layout";
-}
-@using System
-@using System.Security.Claims
-@using GoodTreats.ViewModels
-
-@model RegisterViewModel
-<h2>Authentication with Identity</h2>
-<hr />
-@if (User.Identity.IsAuthenticated)
-{
-  <p>Hello @User.Identity.Name!</p>
-  @using (Html.BeginForm("LogOff", "Account"))
-  {
-    <input type="submit" class="btn btn-danger" value="Log out" />
-    
-  }
-}
-else
-{
-  <p>@Html.ActionLink("Register", "Register")</p>
-  <p>@Html.ActionLink("Log in", "Login")</p>
-}
-<p>@Html.ActionLink("Home", "Index", "Home")</p> *@

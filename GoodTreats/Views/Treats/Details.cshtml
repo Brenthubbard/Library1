@@ -30,14 +30,8 @@
       </ul>
     }
 
-
-    @* <p>@Html.ActionLink("Edit Author", "Edit", new { id = Model.TreatId })</p>
-    <p>@Html.ActionLink("Delete Author", "Delete", new { id = Model.TreatId })</p>
-    <p>@Html.ActionLink("Back to list", "Index")</p> *@
-
-
-    <button type="button" class="btn btn-primary">@Html.ActionLink("Show all treats", "Index")</button>
+    <button type="button" class="btn btn-primary">@Html.ActionLink("Treats", "Index", "Treats")</button>
 <button type="button" class="btn btn-success">@Html.ActionLink("Home", "Index", "Home")</button>
-<button type="button" class="btn btn-danger">@Html.ActionLink("All Flavors", "Index")</button>
-<button type="button" class="btn btn-warning">@Html.ActionLink("Show all treats", "Index", "Treats")</button>
+<button type="button" class="btn btn-danger">@Html.ActionLink("Flavors", "Index", "Flavors")</button>
+<button type="button" class="btn btn-warning">@Html.ActionLink("Treats", "Index", "Treats")</button>
 

@@ -3,8 +3,6 @@ using Microsoft.AspNetCore.Identity;
 using GoodTreats.Models;
 using System.Threading.Tasks;
 using GoodTreats.ViewModels;
-using System;
-
 
 
 namespace GoodTreats.Controllers
@@ -46,11 +44,6 @@ namespace GoodTreats.Controllers
         return View();
       }
     }
-
-
-  
-
-
     public ActionResult Login()
     {
       return View();

@@ -2,13 +2,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using GoodTreats.Models;
-using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 using System.Security.Claims;
-using GoodTreats.ViewModels;
 
 namespace GoodTreats.Controllers
 {
@@ -31,20 +29,6 @@ namespace GoodTreats.Controllers
       var userFlavors = _db.Flavors.Where(entry => entry.User.Id == currentUser.Id).ToList();
       return View(userFlavors);
     }
-
-    // public async Task<IActionResult> Index(string searchTreat)
-    // {
-    //   var flavors = from m in _db.Flavors
-    //                 select m;
-
-    //   if (!string.IsNullOrEmpty(searchTreat))
-    //   {
-    //     flavors = flavors.Where(s => s.Name.Contains(searchTreat));
-    //   }
-
-    //   return View(await flavors.ToListAsync());
-    // }
-
     public ActionResult Create()
     {
       ViewBag.TreatId = new SelectList(_db.Treats, "TreatId", "Name");
@@ -129,25 +113,12 @@ namespace GoodTreats.Controllers
     }
 
     [HttpPost]
-    public ActionResult DeleteAuthor(int joinId)
+    public ActionResult DeleteTreat(int joinId)
     {
       var joinEntry = _db.TreatFlavor.FirstOrDefault(entry => entry.TreatFlavorId == joinId);
       _db.TreatFlavor.Remove(joinEntry);
       _db.SaveChanges();
       return RedirectToAction("Details", new { id = joinEntry.FlavorId });
     }
-
-    // public async Task<IActionResult> Index(string searchTitle)
-    // {
-    //   var books = from m in _db.Books
-    //               select m;
-
-    //   if (!string.IsNullOrEmpty(searchTitle))
-    //   {
-    //     books = books.Where(s => s.Title.Contains(searchTitle));
-    //   }
-
-    //   return View(await books.ToListAsync());
-    // }
   }
 }
