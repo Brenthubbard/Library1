@@ -7,27 +7,17 @@
 
 
 @if (User.Identity.IsAuthenticated)
-   {
+{
 
-   } 
-  else
-  {  
-   } 
-  
-  <button type="button" class="btn btn-warning"> @Html.ActionLink("Account", "Index", "Account")</button>
-  <button type="button" class="btn btn-secondary">@Html.ActionLink("Register", "Register", "Account")</button>
-  
-  <button type="button" class="btn btn-secondary">@Html.ActionLink("Log in", "Login", "Account")</button>
-  
-  
+}
+else
+{
+}
 
+<button type="button" class="btn btn-warning"> @Html.ActionLink("Account", "Index", "Account")</button>
+<button type="button" class="btn btn-secondary">@Html.ActionLink("Register", "Register", "Account")</button>
 
-
-
-
-
+<button type="button" class="btn btn-secondary">@Html.ActionLink("Log in", "Login", "Account")</button>
 <button type="button" class="btn btn-success">@Html.ActionLink("Home", "Index", "Home")</button>
 <button type="button" class="btn btn-danger">@Html.ActionLink("Flavors", "Index", "Flavors")</button>
-@* <button type="button" class="btn btn-danger">@Html.ActionLink("All Flavors", "Index")</button> *@
-
 <button type="button" class="btn btn-warning">@Html.ActionLink("Treats", "Index", "Treats")</button>

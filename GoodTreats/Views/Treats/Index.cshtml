@@ -21,13 +21,12 @@
 else
 {
   <h3>No treats have been added yet</h3>
-  @* <p>Search for an treat by name:</p> *@
+ 
 
 }
 
 <button>@Html.ActionLink("Add new treat", "Create", "Treats")</button>
-@* <p>@Html.ActionLink("Home", "Index", "Home")</p> *@
-@* <button type="button" class="btn btn-primary">@Html.ActionLink("Show all treats", "Index")</button> *@
+
 <button type="button" class="btn btn-success">@Html.ActionLink("Home", "Index", "Home")</button>
 <button type="button" class="btn btn-danger">@Html.ActionLink(" Flavors", "Index", "Flavors")</button>
 <button type="button" class="btn btn-warning">@Html.ActionLink(" treats", "Index","Treats")</button>

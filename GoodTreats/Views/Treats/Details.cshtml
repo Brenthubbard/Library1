@@ -11,7 +11,7 @@
     @if (@Model.JoinEntities.Count == 0)
     {
       <p>Looks like the Treat does not have any Flavors yet!</p>
-      <p>@Html.ActionLink("Add a Flavor to this treatr", "AddFlavor", new { id = Model.TreatId })</p>
+      <p>@Html.ActionLink("Add a Flavor to this treat", "AddFlavor", new { id = Model.TreatId })</p>
     }
     else
     {
