@@ -11,7 +11,7 @@
     @if (@Model.JoinEntities.Count == 0)
     {
       <p>Looks like the Treat does not have any Flavors yet!</p>
-      <p>@Html.ActionLink("Add a Flavor to this treat", "AddFlavor", new { id = Model.TreatId })</p>
+      @* <p>@Html.ActionLink("Add a Flavor to this treat", "AddFlavor", new { id = Model.TreatId })</p> *@
     }
     else
     {
@@ -29,9 +29,8 @@
         }
       </ul>
     }
-
-    <button type="button" class="btn btn-primary">@Html.ActionLink("Treats", "Index", "Treats")</button>
-<button type="button" class="btn btn-success">@Html.ActionLink("Home", "Index", "Home")</button>
-<button type="button" class="btn btn-danger">@Html.ActionLink("Flavors", "Index", "Flavors")</button>
-<button type="button" class="btn btn-warning">@Html.ActionLink("Treats", "Index", "Treats")</button>
-
+    <p>@Html.ActionLink("Delete Treat", "Delete", new { id = Model.TreatId })</p>
+    <button type="button" class="btn btn-Danger">@Html.ActionLink("Treats", "Index", "Treats")</button>
+    <button type="button" class="btn btn-success">@Html.ActionLink("Home", "Index", "Home")</button>
+    <button type="button" class="btn btn-danger">@Html.ActionLink("Flavors", "Index", "Flavors")</button>
+    <button type="button" class="btn btn-warning">@Html.ActionLink("Treats", "Index", "Treats")</button>

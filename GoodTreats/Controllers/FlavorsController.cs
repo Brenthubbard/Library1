@@ -86,17 +86,7 @@ namespace GoodTreats.Controllers
       return View(thisFlavor);
     }
 
-    [HttpPost]
-    public ActionResult AddTreat(Flavor flavor, int TreatId)
-    {
-      if (TreatId != 0)
-      {
-        _db.TreatFlavor.Add(new TreatFlavor() { TreatId = TreatId, FlavorId = flavor.FlavorId });
-      }
-      _db.SaveChanges();
-      return RedirectToAction("Details", new { id = flavor.FlavorId });
-    }
-
+  
     public ActionResult Delete(int id)
     {
       var thisFlavor = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);

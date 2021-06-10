@@ -48,7 +48,7 @@ namespace GoodTreats.Controllers
 
 
     [HttpPost]
-    public async Task<ActionResult> Create(Treat treat, int FlavorId)
+    public ActionResult Create(Treat treat, int FlavorId)
     {
       // var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       // var currentUser = await _userManager.FindByIdAsync(userId);
@@ -90,15 +90,6 @@ namespace GoodTreats.Controllers
 
       return RedirectToAction("Details", new { id = treat.TreatId });
     }
-
-
-    public ActionResult AddFlavor(int id)
-    {
-      var thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
-      ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Name");
-      return View(thisTreat);
-    }
-
     [HttpPost]
     public ActionResult AddFlavor(Treat treat, int FlavorId)
     {
@@ -109,19 +100,6 @@ namespace GoodTreats.Controllers
       _db.SaveChanges();
       return RedirectToAction("Details", new { id = treat.TreatId });
     }
-    [HttpPost]
-    public ActionResult AddTreat(Flavor flavor, int TreatId)
-    {
-      if (TreatId != 0)
-      {
-        _db.TreatFlavor.Add(new TreatFlavor() { TreatId = TreatId, FlavorId = flavor.FlavorId });
-      }
-      _db.SaveChanges();
-      return RedirectToAction("Details", new { id = flavor.FlavorId });
-    }
-
-
-
     public ActionResult Delete(int id)
     {
       var thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
